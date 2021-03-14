@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Core.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace Infrastructure.Data
 {
@@ -27,7 +28,7 @@ namespace Infrastructure.Data
             .FirstOrDefaultAsync(p => p.Id == id);
         }
         public async Task<IReadOnlyList<Product>> GetProductsAsync()
-        {
+        {            
             return await _context.Products
             .Include(p => p.ProductType)
             .Include(p => p.ProductBrand)
